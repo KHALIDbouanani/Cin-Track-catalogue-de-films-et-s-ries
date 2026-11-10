@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/src/output.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body class="bg-black text-white">
+    <header class="flex bg-gray-800 p-4">
+        <div class="flex flex-wrap my-auto">
+            <img src="/img/logo.png" alt="logo" class="h-10 w-10">
+            <h1 class="text-3xl font-bold hidden sm:block">CinTrack</h1>
+        </div>
+        <div class="mx-auto  w-auto">
+            <label for="search"></label>
+            <input id="search" type="text" class="bg-gray-500 border border-gray-400 text-center rounded-full w-full p-2 my-2.5" placeholder="Search">
+        </div>
+        <div class="md:hidden my-auto pl-1.5">
+            <img src="/img/arrow.png" alt="" class="h-10 w-10">
+        </div>
+    </header>
+    <main class="flex justify-center md:justify-between bg-gray-950">
+        <div id="affichage" class="md:w-2/3 mx-2 my-4">
+            <div>
+                <ul class="flex mx-3 p-2"id="choix">
+                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Tous</il>
+                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Films</il>
+                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Séries</il>
+                </ul>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+                <article class="border rounded-3xl text-center overflow-hidden">
+                    <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-full">
+                    <h1 class="text-2xl font-bold">breaking bad</h1>
+                    <a  href="https://1hd.one/series/breaking-bad-18349/" target="_blank">
+                        <span class="text-gray-500">2008 · Serie</span>
+                    </a>
+                </article>
+            </div>
+            <div class="my-4">
+                <nav>
+                    <ul class="flex justify-center">
+                        <li class="text-gray-400 border border-gray-400 bg-red-300 rounded-lg px-3 p-1 m-1">Previous</li>
+                        <li class="text-red-600 border border-red-600 bg-white rounded-lg px-3 p-1 m-1">1</li>
+                        <li class="text-white border border-gray-400 bg-red-500 rounded-lg px-3 p-1 m-1">Next</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="hidden md:block bg-gray-800 md:w-1/3">
+            <p class="font-bold text-xl ml-1.5">Favorites</p>
+            <div class="p-2">
+                <article class="flex justify-between my-2 border rounded-sm overflow-hidden">
+                    <div>
+                        <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-10 h-10">
+                    </div>
+                    <div class="flex justify-between bg-gray-700 w-full">
+                        <h1 class="px-1.5 font-semibold">breaking bad</h1>
+                        <button class="pr-3 font-semibold">X</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h1>Ichharat</h1>
+    </footer>
+</body>
+</html>

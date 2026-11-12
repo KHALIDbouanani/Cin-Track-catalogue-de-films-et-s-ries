@@ -5,4 +5,4 @@ const movies = await chargeDonnees("https://raw.githubusercontent.com/ouchad97/c
 // console.log(movies);
 
 affichage.innerHTML = "";
-movies.map(movie => afficher_Cardes(movie))
+movies.forEach(movie => afficher_Cardes(movie, movies));

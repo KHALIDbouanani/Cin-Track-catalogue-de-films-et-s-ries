@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/src/output.css" rel="stylesheet">
-    <title>Document</title>
+    <title>CinTrack</title>
 </head>
 <body class="bg-black text-white">
     <header class="flex bg-gray-800 p-4">
@@ -24,18 +24,19 @@
         <div class="md:w-2/3 mx-2 my-4">
             <div>
                 <ul class="flex mx-3 p-2"id="choix">
-                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Tous</il>
-                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Films</il>
-                    <il class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2">Séries</il>
+                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Tous</li>
+                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Films</li>
+                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Séries</li>
                 </ul>
             </div>
-            <div id="affichage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
-                <article class="border rounded-3xl text-center overflow-hidden">
-                    <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-full">
-                    <h1 class="text-2xl font-bold">breaking bad</h1>
-                    <a  href="https://1hd.one/series/breaking-bad-18349/" target="_blank">
-                        <span class="text-gray-500">2008 · Serie</span>
-                    </a>
+            <div id="affichage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <article class="flex flex-col border border-gray-600 rounded-3xl overflow-hidden bg-gray-900">
+                    <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-full h-96 object-cover">
+                    <div class="p-4 text-center flex-grow flex flex-col justify-center">
+                        <h1 class="text-2xl font-bold mb-1">Breaking Bad</h1>
+                        <div class="text-gray-400">2008 · series</div>
+                    </div>
+                    <button class="w-full p-3 bg-red-500 hover:bg-red-600 transition-colors font-bold cursor-pointer">Show details</button>
                 </article>
             </div>
             <div class="my-4">
@@ -53,7 +54,7 @@
             <div class="p-2">
                 <article class="flex justify-between my-2 border rounded-sm overflow-hidden">
                     <div>
-                        <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-10 h-10">
+                        <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-10 h-10 object-cover">
                     </div>
                     <div class="flex justify-between bg-gray-700 w-full">
                         <h1 class="px-1.5 font-semibold">breaking bad</h1>
@@ -66,6 +67,40 @@
     <footer>
         <h1>Ichharat</h1>
     </footer>
+
+    <div id="movie-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden z-50 p-4 transition-opacity duration-300">
+        <div class="bg-gray-800 text-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative flex flex-col md:flex-row">
+            <button id="close-modal" class="absolute top-3 right-4 text-gray-400 hover:text-white text-3xl font-bold z-10">&times;</button>
+            <div class="w-full md:w-2/5 flex-shrink-0">
+                <img id="modal-image" src="" alt="Poster" class="w-full h-full object-cover rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none max-h-[50vh] md:max-h-full">
+            </div>
+            <div class="p-6 flex flex-col gap-3 w-full md:w-3/5">
+                <h2 id="modal-title" class="text-3xl font-bold text-red-500"></h2>
+                <div class="text-gray-300 text-sm flex gap-2 font-semibold">
+                    <span id="modal-type" class="bg-gray-700 px-2 py-1 rounded"></span>
+                    <span id="modal-year" class="bg-gray-700 px-2 py-1 rounded"></span>
+                    <span id="modal-duration" class="bg-gray-700 px-2 py-1 rounded"></span>
+                </div>
+
+                <div class="mt-2 text-sm">
+                    <p><strong class="text-gray-400">Genres :</strong> <span id="modal-genres"></span></p>
+                    <p class="mt-1"><strong class="text-gray-400">Réalisateurs :</strong> <span id="modal-directors"></span></p>
+                    <p class="mt-1"><strong class="text-gray-400">Pays de production :</strong> <span id="modal-countries"></span></p>
+                </div>
+
+                <hr class="border-gray-600 my-2">
+
+                <div>
+                    <strong class="text-gray-400">Description :</strong>
+                    <p id="modal-description" class="text-gray-200 mt-1 leading-relaxed text-sm"></p>
+                </div>
+                <a id="modal-watch-btn" title="It's only illegal if you get caught." href="#" target="_blank" class="mt-auto bg-red-500 hover:bg-red-600 hover:scale-105 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors inline-block w-full md:w-auto self-start">
+                    Watch now 😉
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

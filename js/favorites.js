@@ -34,7 +34,17 @@ export function getHeartSVG(isFilled) {
 
 export function renderSidebarFavorites() {
     const container = document.getElementById('favorites-list');
-    if (!container) return;
+    const compteur = document.getElementById("compteur");
+
+    const affichage_Favoris = compteur.querySelector(".all");
+    affichage_Favoris.textContent = '0'
+    const affichage_Films = compteur.querySelector(".films");
+    affichage_Films.textContent = '0'
+    const affichage_Series = compteur.querySelector(".series");
+    affichage_Series.textContent = `0`;
+    let favorites_num = 0 
+    let f_compteur = 0;
+    let s_compteur = 0;
 
     const favs = getFavorites();
     container.innerHTML = '';
@@ -43,8 +53,22 @@ export function renderSidebarFavorites() {
         container.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">No favorites yet.</p>';
         return;
     }
-
+    
+    
     favs.forEach(fav => {
+        favorites_num++
+
+        if(fav.type === "movie"){
+            f_compteur++
+        }
+        if(fav.type === "series"){
+            s_compteur++
+        }
+
+        affichage_Films.textContent = `${f_compteur}`;
+        affichage_Series.textContent = `${s_compteur}`;
+        affichage_Favoris.textContent = `${favorites_num}`
+
         const article = document.createElement('article');
         article.className = 'flex justify-between items-center my-2 border border-gray-600 rounded-sm overflow-hidden bg-gray-900 cursor-pointer hover:bg-gray-700 transition-colors';
 

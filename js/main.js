@@ -26,3 +26,20 @@ categoryButtons.forEach(button => {
         handleFilter();
     });
 });
+
+const menuBtn = document.getElementById('mobile-menu-btn');
+const closeBtn = document.getElementById('close-sidebar-btn');
+const sidebar = document.getElementById('favorites-sidebar');
+
+function openSidebar(){
+    sidebar.classList.remove('translate-x-full');
+    sidebar.classList.add('translate-x-0');
+}
+
+function closeSidebar(){
+    sidebar.classList.remove('translate-x-0');
+    sidebar.classList.add('translate-x-full');
+}
+
+menuBtn.addEventListener('click',openSidebar)
+closeBtn.addEventListener('click',closeSidebar)

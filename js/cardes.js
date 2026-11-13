@@ -1,15 +1,31 @@
 import { openModal } from './modal.js';
+import { isFavorite, toggleFavorite, getHeartSVG } from './favorites.js';
 
 export function afficher_Cardes(movie, items) {
     const affichage = document.getElementById("affichage");
     const article = document.createElement('article');
-    article.className = 'flex flex-col border border-gray-600 rounded-3xl overflow-hidden hover:scale-99 bg-gray-900';
+    article.className = 'flex flex-col border border-gray-600 rounded-3xl overflow-hidden hover:scale-99 bg-gray-900 transition-transform';
+    
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'relative w-full h-96';
     
     const img = document.createElement('img');
-    img.className = 'w-full h-96 object-cover'; 
+    img.className = 'w-full h-full object-cover'; 
     img.setAttribute('src', `${movie.image}`);
     img.setAttribute('alt', `${movie.title} Poster`);
-    article.append(img);
+    
+    const heartBtn = document.createElement('button');
+    heartBtn.className = 'heart-btn absolute top-2 right-2 p-2 bg-black/60 rounded-full hover:bg-black/80 transition-colors cursor-pointer z-10';
+    heartBtn.dataset.id = movie.id;
+    heartBtn.innerHTML = getHeartSVG(isFavorite(movie.id));
+    
+    heartBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        toggleFavorite(movie);
+    });
+
+    imgContainer.append(img, heartBtn);
+    article.append(imgContainer);
 
     const textContainer = document.createElement('div');
     textContainer.className = 'p-4 text-center flex-grow flex flex-col justify-center';

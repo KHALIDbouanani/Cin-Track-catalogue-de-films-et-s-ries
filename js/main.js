@@ -1,10 +1,13 @@
 import {chargeDonnees} from './api.js';
 import { initRendering, handleFilter } from './filtrage.js'; 
+import { renderSidebarFavorites } from './favorites.js';
 
 const movies = await chargeDonnees("https://raw.githubusercontent.com/ouchad97/cinetrack-api/main/cinetrack-data.json")
 // console.log(movies);
 
 initRendering(movies);
+
+renderSidebarFavorites();
 
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", handleFilter);

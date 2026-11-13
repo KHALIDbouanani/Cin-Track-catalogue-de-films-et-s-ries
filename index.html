@@ -7,26 +7,27 @@
     <title>CinTrack</title>
 </head>
 <body class="bg-black text-white">
-    <header class="flex bg-gray-800 p-4">
+    <header class="fixed top-0 left-0 w-full flex items-center bg-gray-800 p-4 z-50 shadow-md">
         <div class="flex flex-wrap my-auto">
             <img src="/img/logo.png" alt="logo" class="h-10 w-10">
             <h1 class="text-3xl font-bold hidden sm:block">CinTrack</h1>
         </div>
-        <div class="mx-auto  w-auto">
+        <div class="mx-auto w-auto">
             <label for="search"></label>
             <input id="search" type="text" class="bg-gray-500 border border-gray-400 text-center rounded-full w-full p-2 my-2.5" placeholder="Search">
         </div>
-        <div class="md:hidden my-auto pl-1.5">
-            <img src="/img/arrow.png" alt="" class="h-10 w-10">
-        </div>
+        <button id="mobile-menu-btn" class="md:hidden my-auto pl-1.5 cursor-pointer">
+            <img src="/img/open_menu.png" alt="Menu" class="w-8 h-8 brightness-0 invert">
+        </button>
     </header>
-    <main class="flex justify-center md:justify-between bg-gray-950">
-        <div class="md:w-2/3 mx-2 my-4">
+
+    <main class="flex justify-center md:justify-between bg-gray-950 pt-24 min-h-screen">
+        <div class="w-full md:w-2/3 mx-2 my-4">
             <div>
                 <ul class="flex mx-3 p-2"id="choix">
-                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Tous</li>
-                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Films</li>
-                    <li class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Séries</li>
+                    <li data-type="all" class="active-filter text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Tous</li>
+                    <li data-type="movie" class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Films</li>
+                    <li data-type="series" class="text-white border border-[#928b8b26] bg-gray-500 rounded-lg px-3 p-1 m-2 cursor-pointer">Séries</li>
                 </ul>
             </div>
             <div id="affichage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -41,7 +42,7 @@
             </div>
             <div class="my-4">
                 <nav>
-                    <ul class="flex justify-center">
+                    <ul id="pagination" class="flex justify-center gap-2">
                         <li class="text-gray-400 border border-gray-400 bg-red-300 rounded-lg px-3 p-1 m-1">Previous</li>
                         <li class="text-red-600 border border-red-600 bg-white rounded-lg px-3 p-1 m-1">1</li>
                         <li class="text-white border border-gray-400 bg-red-500 rounded-lg px-3 p-1 m-1">Next</li>
@@ -49,18 +50,25 @@
                 </nav>
             </div>
         </div>
-        <div class="hidden md:block bg-gray-800 md:w-1/3">
-            <p class="font-bold text-xl ml-1.5">Favorites</p>
-            <div class="p-2">
-                <article class="flex justify-between my-2 border rounded-sm overflow-hidden">
-                    <div>
-                        <img src="/img/breaking-bad-comic-art-jvmua77hy4u4vp8f.jpg" alt="Poster" class="w-10 h-10 object-cover">
-                    </div>
-                    <div class="flex justify-between bg-gray-700 w-full">
-                        <h1 class="px-1.5 font-semibold">breaking bad</h1>
-                        <button class="pr-3 font-semibold">X</button>
-                    </div>
-                </article>
+
+        <div id="favorites-sidebar" class="fixed top-0 right-0 h-full w-72 bg-gray-800 z-[60] transform translate-x-full transition-transform duration-300 md:sticky md:top-24 md:h-[calc(100vh-6rem)] md:w-1/3 md:translate-x-0 shadow-2xl flex flex-col">
+            
+            <div class="flex justify-between items-center p-2 border-b border-gray-700">
+                <p class="font-bold text-xl ml-2">Favorites</p>
+                <button id="close-sidebar-btn" class="md:hidden p-2 cursor-pointer">
+                    <img src="/img/arrow.png" alt="Fermer" class="w-6 h-6 brightness-0 invert">
+                </button>
+            </div>
+            <div id="compteur" class="grid grid-cols-2">
+                <p class="font-bold text-start p-3">Tous</p>
+                <p id="All" class="all text-center text-red-500 font-bold p-3"></p>
+                <p class="font-bold text-start p-3">Séries</p>
+                <p id="series" class="series text-center text-red-500 font-bold p-3"></p>
+                <p class="font-bold text-start p-3">Films</p>
+                <p id="films" class="films text-center text-red-500 font-bold p-3"></p>
+                
+            </div>
+            <div id="favorites-list" class="p-2 overflow-y-auto flex-grow">
             </div>
         </div>
     </main>
@@ -68,7 +76,7 @@
         <h1>Ichharat</h1>
     </footer>
 
-    <div id="movie-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden z-50 p-4 transition-opacity duration-300">
+    <div id="movie-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden z-[100] p-4 transition-opacity duration-300">
         <div class="bg-gray-800 text-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative flex flex-col md:flex-row">
             <button id="close-modal" class="absolute top-3 right-4 text-gray-400 hover:text-white text-3xl font-bold z-10">&times;</button>
             <div class="w-full md:w-2/5 flex-shrink-0">
